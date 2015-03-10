@@ -22,13 +22,23 @@ httpApp.use(bodyParser.json());
 
 // handle socket io connection.
 io.on('connection', function(socket){
-  console.log("connection");
+  var lId;
   socket.on("setId", function(msg)
   {
-    api.user_media_recent(msg, {}, 
+    lId = msg;
+    api.user(msg, function(err, result, remaining, limit) 
+    {
+       socket.emit("mapUser", result);
+    });
+  });
+
+  socket.on("getFeed", function(msg)
+  {
+    var lMin = msg;
+    api.user_media_recent(lId, {min_id:lMin, count:10}, 
     function(err, medias, pagination, remaining, limit)
     {
-       socket.emit("addFeed", medias);
+       socket.emit("addFeed", {content:medias, index:lMin});
     });
   });
 

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <link rel="stylesheet/less" type="text/css" href="../css/main.less" />
+    <link rel="stylesheet/less" type="text/css" href="../css/feed.less" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -24,10 +25,22 @@
     <script src="../js/feed.js"></script>
 
 <body>
+    
   <div  ng-app="mainModule">
     <div ng-controller="FeedController" data-ng-init="init()">
+        <div id="headerApp">
+        <strong>
+        <img id="profilePicture" src={{user.profile_picture}}> </img>
+        <div id="nameContainer">
+            <h1>{{user.full_name}}</h1>
+            <h2 id="userName">{{user.username}}</h2>
+        </div>
+        </strong>
+        </div>
         <ul >
-            <li ng-repeat="data in posts"> {{ data.user.username }} </li>
+            <div class="postContainer" ng-repeat="data in posts">
+                <img src="{{data.images.standard_resolution.url}}"></img>
+            </div>
         </ul>
     </div> <!-- Feed Controller -->
   </div> <!-- ng-app mainModule -->

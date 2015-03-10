@@ -14,7 +14,7 @@ angular.module("mainModule", [])
         {
         	if(data.length > 0)
         	{
-        		window.location = "/feed&userid=" + data[0].id;
+        		window.location = "/feed/" + data[0].id;
         	}
         })
         .error(function (data, status, headers, config)

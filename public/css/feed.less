@@ -1,0 +1,51 @@
+@dark: #bbb;
+@bright: #eee;
+@white: #fff;
+@containerHeight: 600px;
+
+
+.postContainer
+{
+  width:100%;
+  color-background:@bright;
+  margin: 10px;
+}
+
+.postContainer img
+{
+    display: table;
+    margin: 0 auto;
+}
+
+#profilePicture
+{
+  display:block;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #333;
+  float: left;
+  margin: 0px 30px 30px 30px;
+}
+
+#headerApp
+{
+  position:fixed;
+  background: -webkit-linear-gradient(#f9f9f9, @bright); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#f9f9f9, @bright); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#f9f9f9, @bright); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#f9f9f9, @bright); /* Standard syntax */
+
+  border-bottom: 1px solid @dark;
+  color:#222;
+  width:100%;
+  display: inline-block;
+}
+
+#userName
+{
+margin-top:-5px;
+  color:#777;
+}
