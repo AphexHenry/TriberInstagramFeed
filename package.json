@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.11.1",
-    "body-parser": "^1.10.2"
+    "body-parser": "^1.10.2",
+    "instagram-node": "^0.5.6"
   }
 }
