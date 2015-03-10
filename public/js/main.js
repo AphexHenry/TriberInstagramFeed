@@ -12,7 +12,10 @@ angular.module("mainModule", [])
       $http.post("/getUsersWithName", {name:$scope.userName})
         .success(function (data, status, headers, config)
         {
-
+        	if(data.length > 0)
+        	{
+        		window.location = "/feed/" + data[0].id;
+        	}
         })
         .error(function (data, status, headers, config)
         {

@@ -51,6 +51,17 @@ httpApp.post('/getUsersWithName', function(req, res) {
     });
 });
 
+httpApp.get('/feed/:userId', function(req, res) {
+    console.log("feed/:userId");
+  console.log(req.params);
+    api.user_media_recent(req.body.userId, {}, 
+    function(err, users, remaining, limit) 
+    {
+      
+    });
+  res.send("tagId is set to " + req.params.userId);
+});
+
 // This is your redirect URI 
 httpApp.get('/handleauth', exports.handleauth);
  
