@@ -1,0 +1,15 @@
+{
+  "name": "triberApp",
+  "version": "0.0.0",
+  "description": "Instagram Feed Application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "author": "Baptiste Bohelay",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.11.1",
+    "body-parser": "^1.10.2"
+  }
+}

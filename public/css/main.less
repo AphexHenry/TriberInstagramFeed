@@ -1,0 +1,52 @@
+@dark: #bbb;
+@bright: #eee;
+@white: #fff;
+@sizeLeft: 20%;
+@sizeRight:100% - @sizeLeft;
+@heightHeader:15vh;
+@heightFooter:5vh;
+
+#headerApp
+{
+  background: -webkit-linear-gradient(#f9f9f9, @bright); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#f9f9f9, @bright); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#f9f9f9, @bright); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#f9f9f9, @bright); /* Standard syntax */
+
+  height:@heightHeader;
+  border-bottom: 1px solid @dark;
+  text-align: center;
+  color:#79a; 
+}
+
+#signature
+{
+  position: absolute;
+  bottom :0px;
+  right: 10px;
+  text-shadow: 2px 1px @white;
+  color:#333;
+}
+
+#title
+{
+  margin-left: 5%;
+  padding-top: 2vh;
+  float:left;
+}
+
+#footer
+{
+  position:absolute;
+  height:@heightFooter;
+  width:100%;
+  bottom: 0px;
+  background-color: @bright;
+  border-top: 1px solid @dark;
+  color:#666;
+  text-align: center;
+}
+
+body{
+  background-color: @bright;
+}
