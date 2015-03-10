@@ -10,8 +10,10 @@ var socket = io();
 angular.module("mainModule", [])
   .controller("FeedController", function ($scope, $http)
   {
-    $scope.posts = [{user:{username:"Alex"}}, {user:{username:"Alefx"}}];
+    // container for the posts.
     $scope.posts = [];
+    //loading state.
+    $scope.loading = true;
 
     var lId = sURLTools.getUrlParameter("userid");
     // sent the id to the server.
@@ -21,9 +23,11 @@ angular.module("mainModule", [])
     {
       $scope.user = msg;
       // request the feed.
-      AskForIndexAfter(0);
-      // get the .
+      AskForNextPosts($scope);
+
+      // get the next posts.
       socket.on('addFeed', function(msg){
+        $scope.loading = false;
         if(msg.index == 0)
         {
           $scope.posts = msg.content.concat($scope.posts);
@@ -33,14 +37,24 @@ angular.module("mainModule", [])
           $scope.posts = $scope.posts.concat(msg.content);  
         }
         
+        $(window).scroll(function() {
+           if($(window).scrollTop() + $(window).height() > $(document).height() - 1) {
+            if(!$scope.loading)
+            {
+              AskForNextPosts($scope);
+              $scope.loading = true;
+            }
+           }
+        });
+
         // $scope.posts = [{user:{username:"fdsdf"}}, {user:{username:"dsf"}}];
         $scope.$apply();
       });
     });
-
   });
 
-  function AskForIndexAfter(aIndexMin)
+  function AskForNextPosts($scope)
   {
-    socket.emit('getFeed', aIndexMin);
+    $scope.loading = true;
+    socket.emit('getFeed', $scope.posts.length);
   }

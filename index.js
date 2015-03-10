@@ -35,9 +35,11 @@ io.on('connection', function(socket){
   socket.on("getFeed", function(msg)
   {
     var lMin = msg;
-    api.user_media_recent(lId, {min_id:lMin, count:10}, 
+    api.user_media_recent(lId, {min_id:lMin}, 
     function(err, medias, pagination, remaining, limit)
     {
+      console.log(remaining);
+      console.log(limit);
        socket.emit("addFeed", {content:medias, index:lMin});
     });
   });
