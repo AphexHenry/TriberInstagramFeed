@@ -4,6 +4,7 @@
 @containerHeight: 600px;
 @profilePicSize:70px;
 @mediaWidth: 510px;
+@mediaShadow: 10px 10px 5px 0px rgba(0,0,0,0.34);
 
 
 .postContainer
@@ -13,15 +14,18 @@
   margin-bottom:30px;
 }
 
-.postContainer img
+.postContainer img, video
 {
     display: table;
     margin: 0 auto;
+    -webkit-box-shadow: @mediaShadow;
+    -moz-box-shadow: @mediaShadow;
+    box-shadow: @mediaShadow;
 }
 
 #containerAllMedia
 {
-    background-color:#ddd; 
+    background-color:#ddd;  
 }
 
 #profilePicture
@@ -49,6 +53,7 @@
   color:#222;
   width:100%;
   display: inline-block;
+  z-index:1000;
 }
 
 #ImageContainerPlaceHolder
@@ -75,9 +80,15 @@
   left:50%;
 }
 
-#userIcon
+#searchUserIcon
 {
   width:@profilePicSize * 0.5;
   float: right;
   margin:30px 30px 0px 0px;
+  opacity:0.4;
+}
+
+#searchUserIcon:hover
+{
+  opacity:0.8;
 }
