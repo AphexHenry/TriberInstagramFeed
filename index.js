@@ -14,12 +14,10 @@ api.use({ client_id: 'b91056a8d0c443af98f1fa9523972bb9',
 
 var redirect_uri = 'http://localhost:3000/handleauth';
 
-// Setup and configure Express http server. Expect a subfolder called "public" to be the web root.
-
+// Setup and configure Express http server. Expect a subfolder named "public" to be the web root.
 httpApp.use(express.static(__dirname + "/public"));
 httpApp.use(bodyParser.urlencoded({ extended: true }));
 httpApp.use(bodyParser.json());
-
 
 // handle socket io connection.
 io.on('connection', function(socket){
@@ -31,6 +29,21 @@ io.on('connection', function(socket){
     {
        socket.emit("mapUser", result);
     });
+
+    // updating the last post every 10 secondes to fetch the new instagrams.
+    // That's a dirty method, we would better use the subsription api (not well documented).
+    var lLastTimeStamp = 0;
+    setInterval(function()
+    {
+      api.user_media_recent(lId, {count:1}, function(err, medias, pagination, remaining, limit)
+      {
+        if((medias[0].created_time > lLastTimeStamp) && (lLastTimeStamp > 0))
+        {
+          socket.emit("addFeed", {content:medias, index:0});
+        }
+        lLastTimeStamp = medias[0].created_time;
+      });
+    }, 10000);
   });
 
   var lPaginationHandler = null;
