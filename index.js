@@ -27,7 +27,14 @@ io.on('connection', function(socket){
     lId = msg;
     api.user(msg, function(err, result, remaining, limit) 
     {
-       socket.emit("mapUser", result);
+      if(result == undefined)
+      {
+        socket.emit("wrongUser", result); 
+      }
+      else
+      {
+        socket.emit("mapUser", result);
+      }
     });
 
     // updating the last post every 10 secondes to fetch the new instagrams.
@@ -37,6 +44,8 @@ io.on('connection', function(socket){
     {
       api.user_media_recent(lId, {count:1}, function(err, medias, pagination, remaining, limit)
       {
+        if(medias == undefined)
+          return;
         if((medias[0].created_time > lLastTimeStamp) && (lLastTimeStamp > 0))
         {
           socket.emit("addFeed", {content:medias, index:0});
@@ -61,6 +70,10 @@ io.on('connection', function(socket){
       if(lPaginationHandler.next) 
       {
         lPaginationHandler.next(paginationCallback); // Will get second page results 
+      }
+      else
+      {
+        socket.emit('loadedAll');
       }
     }
     else

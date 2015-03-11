@@ -1,32 +1,13 @@
 @dark: #bbb;
 @bright: #eee;
 @white: #fff;
+@grey:#777;
 @containerHeight: 600px;
 @profilePicSize:70px;
 @mediaWidth: 510px;
 @mediaShadow: 10px 10px 5px 0px rgba(0,0,0,0.34);
 
 
-.postContainer
-{
-  width:100%;
-  color-background:@bright;
-  margin-bottom:30px;
-}
-
-.postContainer img, video
-{
-    display: table;
-    margin: 0 auto;
-    -webkit-box-shadow: @mediaShadow;
-    -moz-box-shadow: @mediaShadow;
-    box-shadow: @mediaShadow;
-}
-
-#containerAllMedia
-{
-    background-color:#ddd;  
-}
 
 #profilePicture
 {
@@ -64,13 +45,53 @@
 .instagramMedia
 {
   width:@mediaWidth;
+  float :inherit;
+}
 
+.postContainer
+{
+  width:100%;
+  color-background:@bright;
+  margin-bottom:30px;
+}
+
+.postContainer img, video
+{
+    display: table;
+    margin: 0 auto;
+    -webkit-box-shadow: @mediaShadow;
+    -moz-box-shadow: @mediaShadow;
+    box-shadow: @mediaShadow;
+}
+
+.likeIcon
+{
+  float:right;
+}
+
+#containerAllMedia
+{
+    background-color:#ddd;  
+}
+
+.mediaCaption
+{
+  color:#444;
+  float:left;
+  width:400px;
+  margin:30px 0px 30px 60px;
+}
+
+.mediaDate
+{
+  color:@white;
+  text-shadow: 2px 2px 8px #555555;
 }
 
 #userName
 {
   margin-top:-5px;
-  color:#777;
+  color:@grey;
 }
 
 #loaderIcon

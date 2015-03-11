@@ -23,10 +23,25 @@ angularApp.controller("FeedController", function ($scope, $http)
   $scope.posts = [];
   //loading state.
   $scope.loading = true;
+  $scope.endOfFeed = false;
 
   var lId = sURLTools.getUrlParameter("userid");
   // sent the id to the server.
   socket.emit('setId', lId);
+
+  // handle a wrong user id, come back to home.
+  socket.on('wrongUser', function(msg)
+  {
+    window.location = '/';
+  });
+
+  // everything is loaded.
+  socket.on('loadedAll', function(msg)
+  {
+    $scope.endOfFeed = true;
+    $scope.$apply();
+  });
+
   //retrieve the user information.
   socket.on('mapUser', function(msg)
   {
@@ -56,7 +71,6 @@ angularApp.controller("FeedController", function ($scope, $http)
          }
       });
 
-      // $scope.posts = [{user:{username:"fdsdf"}}, {user:{username:"dsf"}}];
       $scope.$apply();
     });
   });

@@ -45,14 +45,23 @@
             <div id="ImageContainerPlaceHolder"></div>
             <ul >
                 <div class="postContainer" ng-repeat="data in posts">
-                    <video class="instagramMedia" data-ng-hide="{{data.type == 'image'}}" controls>
-                        <source ng-src="{{data.videos.standard_resolution.url}}" type="video/mp4">
-                    </video>   
-                    <img class="instagramMedia" src="{{data.images.standard_resolution.url}}" data-ng-hide="{{data.type == 'video'}}"></img>
+                    <div class="mediaCaption">
+                        <h4 class="mediaDate"> {{data.created_time * 1000  | date:'MMM d, y'}}
+                        <h4> {{data.caption.text}} </h4>
+                    </div>
+                    <div>
+                        <video class="instagramMedia" data-ng-hide="{{data.type == 'image'}}" controls>
+                            <source ng-src="{{data.videos.standard_resolution.url}}" type="video/mp4">
+                        </video>   
+                        <img class="instagramMedia" src="{{data.images.standard_resolution.url}}" data-ng-hide="{{data.type == 'video'}}"></img>
+                    </div>
+                    <div class="likeIcon">
+                        <i class="glyphicon glyphicon-heart"></i>
+                    </div>
                 </div>
             </ul>
         </div><!-- #ContainerAllMedia -->
-        <i id="loaderIcon" class="fa fa-circle-o-notch fa-spin fa-2x"></i>
+        <i id="loaderIcon" class="fa fa-circle-o-notch fa-spin fa-2x" data-ng-show="!endOfFeed"></i>
     </div> <!-- Feed Controller -->
   </div> <!-- ng-app mainModule -->
 
