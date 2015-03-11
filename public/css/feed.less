@@ -2,13 +2,15 @@
 @bright: #eee;
 @white: #fff;
 @containerHeight: 600px;
+@profilePicSize:70px;
+@mediaWidth: 510px;
 
 
 .postContainer
 {
   width:100%;
   color-background:@bright;
-  margin: 10px;
+  margin-bottom:30px;
 }
 
 .postContainer img
@@ -17,17 +19,22 @@
     margin: 0 auto;
 }
 
+#containerAllMedia
+{
+    background-color:#ddd; 
+}
+
 #profilePicture
 {
   display:block;
   background-repeat: no-repeat;
   background-position: 50%;
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: @profilePicSize;
+  height: @profilePicSize;
   border: 2px solid #333;
   float: left;
-  margin: 0px 30px 30px 30px;
+  margin: 0px 15px 15px 30px;
 }
 
 #headerApp
@@ -44,6 +51,17 @@
   display: inline-block;
 }
 
+#ImageContainerPlaceHolder
+{
+  height:@profilePicSize + 50px;
+}
+
+.instagramMedia
+{
+  width:@mediaWidth;
+
+}
+
 #userName
 {
   margin-top:-5px;
@@ -55,4 +73,11 @@
   position:relative;
   margin:30px;
   left:50%;
+}
+
+#userIcon
+{
+  width:@profilePicSize * 0.5;
+  float: right;
+  margin:30px 30px 0px 0px;
 }

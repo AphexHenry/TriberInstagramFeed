@@ -20,6 +20,7 @@ httpApp.use(express.static(__dirname + "/public"));
 httpApp.use(bodyParser.urlencoded({ extended: true }));
 httpApp.use(bodyParser.json());
 
+
 // handle socket io connection.
 io.on('connection', function(socket){
   var lId;
@@ -32,16 +33,28 @@ io.on('connection', function(socket){
     });
   });
 
+  var lPaginationHandler = null;
+  var paginationCallback = function(err, medias, pagination, remaining, limit){
+    // Your implementation here 
+    socket.emit("addFeed", {content:medias, index:1});
+    lPaginationHandler = pagination;
+
+  };
+
   socket.on("getFeed", function(msg)
   {
-    var lMin = msg;
-    api.user_media_recent(lId, {min_id:lMin}, 
-    function(err, medias, pagination, remaining, limit)
+    if(lPaginationHandler)
     {
-      console.log(remaining);
-      console.log(limit);
-       socket.emit("addFeed", {content:medias, index:lMin});
-    });
+      if(lPaginationHandler.next) 
+      {
+        lPaginationHandler.next(paginationCallback); // Will get second page results 
+      }
+    }
+    else
+    {
+      var lMin = msg;
+      api.user_media_recent(lId, {count:10}, paginationCallback);
+    }
   });
 
 });

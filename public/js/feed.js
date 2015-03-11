@@ -38,7 +38,7 @@ angular.module("mainModule", [])
         }
         
         $(window).scroll(function() {
-           if($(window).scrollTop() + $(window).height() > $(document).height() - 1) {
+           if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
             if(!$scope.loading)
             {
               AskForNextPosts($scope);
