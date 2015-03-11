@@ -10,15 +10,11 @@ angular.module("mainModule", [])
     $scope.users = [];
     $scope.needToLoad = false;
 
-    setInterval(function(){if($scope.needToLoad){$scope.updateAvatar(); }}, 2000);
 
     $scope.loadUsersAvatar = function()
     {
-        console.log("send later");
-        $scope.needToLoad = true;
     }
 
-    $scope.updateAvatar = function()
     {
       if(!$scope.loading)
       {
