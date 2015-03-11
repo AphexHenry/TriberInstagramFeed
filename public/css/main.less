@@ -4,7 +4,35 @@
 @sizeLeft: 20%;
 @sizeRight:100% - @sizeLeft;
 @heightFooter:5vh;
+@profilePicSize:70px;
+@avatarHoverShadow: 4px 4px 5px 0px rgba(0,0,0,0.34);
 
+.profilePictureMain
+{
+  display:block;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  width: @profilePicSize;
+  height: @profilePicSize;
+  border: 2px solid #333;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.profilePictureMain:hover
+{
+    -webkit-box-shadow: @avatarHoverShadow;
+    -moz-box-shadow: @avatarHoverShadow;
+    box-shadow: @avatarHoverShadow;
+}
+
+.userContainer
+{
+  list-style-type: none; 
+  display: inline-block;
+}
 
 #signature
 {
@@ -13,13 +41,6 @@
   right: 10px;
   text-shadow: 2px 1px @white;
   color:#333;
-}
-
-#title
-{
-  margin-left: 5%;
-  padding-top: 2vh;
-  float:left;
 }
 
 #footer
@@ -38,6 +59,11 @@
 {
   position:absolute;
   top:40%;
+}
+
+.userName
+{
+  text-align:center;
 }
 
 a:hover {
