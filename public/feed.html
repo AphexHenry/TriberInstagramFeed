@@ -33,7 +33,7 @@
         <strong>
         <a href="/"><img id="searchUserIcon" src="../img/searchUserIcon.svg" title="look for other user"> </img></a>
         <a href=https://instagram.com/{{user.username}}>
-            <img id="profilePicture" src={{user.profile_picture}}> </img>
+            <img class="profilePicture" src={{user.profile_picture}}> </img>
             <div id="nameContainer">
                 <h2>{{user.full_name}}</h2>
                 <h3 id="userName">{{user.username}}</h3>
@@ -52,11 +52,8 @@
                     <div>
                         <video class="instagramMedia" data-ng-hide="{{data.type == 'image'}}" controls>
                             <source ng-src="{{data.videos.standard_resolution.url}}" type="video/mp4">
-                        </video>   
+                        </video>
                         <img class="instagramMedia" src="{{data.images.standard_resolution.url}}" data-ng-hide="{{data.type == 'video'}}"></img>
-                    </div>
-                    <div class="likeIcon">
-                        <i class="glyphicon glyphicon-heart"></i>
                     </div>
                 </div>
             </ul>
