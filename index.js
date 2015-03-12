@@ -20,6 +20,7 @@ httpApp.use(bodyParser.json());
 // handle socket io connection.
 io.on('connection', function(socket){
   var lId;
+  var lInterval = null;
   socket.on("setId", function(msg)
   {
     lId = msg;
@@ -38,7 +39,7 @@ io.on('connection', function(socket){
     // updating the last post every 10 secondes to fetch the new instagrams.
     // That's a dirty method, we would better use the subsription api (not well documented).
     var lLastTimeStamp = 0;
-    setInterval(function()
+    lInterval = setInterval(function()
     {
       api.user_media_recent(lId, {count:1}, function(err, medias, pagination, remaining, limit)
       {
@@ -77,6 +78,13 @@ io.on('connection', function(socket){
     else
     {
       api.user_media_recent(lId, {count:10}, paginationCallback);
+    }
+  });
+
+  socket.on('disconnect', function () {
+    if(lInterval)
+    {
+      clearInterval(lInterval);
     }
   });
 
