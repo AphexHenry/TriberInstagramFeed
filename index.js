@@ -9,8 +9,8 @@ var bodyParser = require('body-parser');
 // instagram driver.
 var api = require('instagram-node').instagram();
 
-api.use({ client_id: 'b91056a8d0c443af98f1fa9523972bb9',
-         client_secret: '2b88ce7e89f54f9781c3158848a90bb7' });
+api.use({ client_id: 'c84aa5c191cc40028440478a279c7ebd',
+         client_secret: '7d0e1012970f4b3ca47bb39686ec577d' });
 
 // Setup and configure Express http server. Expect a subfolder named "public" to be the web root.
 httpApp.use(express.static(__dirname + "/public"));

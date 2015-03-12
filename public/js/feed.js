@@ -60,7 +60,7 @@ angularApp.controller("FeedController", function ($scope, $http)
       {
         $scope.posts = $scope.posts.concat(msg.content);  
       }
-      
+      $scope.$apply();
       $(window).scroll(function() {
          if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
           if(!$scope.loading)
