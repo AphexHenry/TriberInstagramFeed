@@ -1,6 +1,6 @@
 # Triber Instagram Feed
 Node.js based single page app displaying Instagram feed from any user.
-This application is visible <a href="https://instagramreader.herokuapp.com/">here</a>
+This application is visible <a href="https://instagramreader.herokuapp.com/">here</a>.
 
 <h3>The application has the following features:</h3>
 - Load posts from a user, 10 by 10.
