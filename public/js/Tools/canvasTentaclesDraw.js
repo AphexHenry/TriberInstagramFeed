@@ -5,15 +5,14 @@ function CanvasTentaclesDraw(aCanvas)
   this.canvas = aCanvas
   this.ctx = this.canvas.getContext('2d');
   this.lines = [];
-  // for(var i = 0; i < 200; i++)
-  // {
-  //   this.lines.push({x:0., y:0.});
-  // }
 
   this.timer = 0.;
   this.lastUpdate = new Date().getTime() / 1000;
   this.canvas.width = $(document).width();
   this.canvas.height = $(document).height();
+
+  var that = this;
+  setInterval(function(){that.update();}, 30);
 }
 
 CanvasTentaclesDraw.prototype.update = function()
@@ -60,12 +59,6 @@ CanvasTentaclesDraw.prototype.draw = function()
   grad.addColorStop(0, '#ddbbbb');
   grad.addColorStop(1, '#eee');
 
-this.ctx.strokeStyle = grad;
-  // this.ctx.strokeStyle = '#ddbbbb';
+  this.ctx.strokeStyle = grad;
   this.ctx.stroke();
 }
-
-$(function(){
-  var sCanvasDraw = new CanvasTentaclesDraw(document.getElementById('drawCanvas'));
-  setInterval(function(){sCanvasDraw.update();}, 30);
-});

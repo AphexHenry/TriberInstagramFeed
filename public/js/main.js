@@ -92,3 +92,8 @@ angular.module("mainModule", [])
     }
 
   });
+  
+  // trigger the drawing
+  $(function(){
+    new CanvasTentaclesDraw(document.getElementById('drawCanvas'));
+  });
