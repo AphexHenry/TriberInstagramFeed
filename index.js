@@ -12,8 +12,6 @@ var api = require('instagram-node').instagram();
 api.use({ client_id: 'b91056a8d0c443af98f1fa9523972bb9',
          client_secret: '2b88ce7e89f54f9781c3158848a90bb7' });
 
-var redirect_uri = 'http://localhost:3000/handleauth';
-
 // Setup and configure Express http server. Expect a subfolder named "public" to be the web root.
 httpApp.use(express.static(__dirname + "/public"));
 httpApp.use(bodyParser.urlencoded({ extended: true }));
@@ -55,12 +53,12 @@ io.on('connection', function(socket){
     }, 10000);
   });
 
+  // pagination callback to stream the feed.
   var lPaginationHandler = null;
   var paginationCallback = function(err, medias, pagination, remaining, limit){
     // Your implementation here 
     socket.emit("addFeed", {content:medias, index:1});
     lPaginationHandler = pagination;
-
   };
 
   socket.on("getFeed", function(msg)
@@ -69,7 +67,7 @@ io.on('connection', function(socket){
     {
       if(lPaginationHandler.next) 
       {
-        lPaginationHandler.next(paginationCallback); // Will get second page results 
+        lPaginationHandler.next(paginationCallback); // Will get next page results 
       }
       else
       {
@@ -78,7 +76,6 @@ io.on('connection', function(socket){
     }
     else
     {
-      var lMin = msg;
       api.user_media_recent(lId, {count:10}, paginationCallback);
     }
   });

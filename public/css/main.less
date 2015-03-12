@@ -57,8 +57,24 @@
 
 .centerContainer
 {
-  position:absolute;
-  top:40%;
+  position: relative;
+  margin-top: 40vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 270px;
+}
+
+@media (max-width: 500px) 
+{
+  .centerContainer
+  {
+    width: 70%;
+  }
+
+  .userContainer
+  {
+    display:none;
+  }
 }
 
 .userName

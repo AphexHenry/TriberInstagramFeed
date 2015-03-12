@@ -43,7 +43,6 @@
         </div>
         <div id="containerAllMedia">
             <div id="ImageContainerPlaceHolder"></div>
-            <ul >
                 <div class="postContainer" ng-repeat="data in posts">
                     <div class="mediaCaption">
                         <h4 class="mediaDate"> {{data.created_time * 1000  | date:'MMM d, y'}}
@@ -56,7 +55,6 @@
                         <img class="instagramMedia" src="{{data.images.standard_resolution.url}}" data-ng-hide="{{data.type == 'video'}}"></img>
                     </div>
                 </div>
-            </ul>
         </div><!-- #ContainerAllMedia -->
         <i id="loaderIcon" class="fa fa-circle-o-notch fa-spin fa-2x" data-ng-show="!endOfFeed"></i>
     </div> <!-- Feed Controller -->
